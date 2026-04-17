@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section class="d-flex align-items-center text-white bg-gradient-purple" style="min-height: 80vh; background: linear-gradient(rgba(46, 2, 109, 0.7), rgba(69, 10, 122, 0.7)), url('/static/images/hero-bg.jpg') no-repeat center center/cover;">
+<section class="d-flex align-items-center text-white bg-gradient-purple" style="min-height: 100vh; background: linear-gradient(rgba(46, 2, 109, 0.7), rgba(69, 10, 122, 0.7)), url('/static/images/hero-bg.jpg') no-repeat center center/cover; position: sticky; top: 0; z-index: 1;">
     <div class="container text-center py-5">
         <h1 class="display-3 fw-bold">Connect with The World Without Wires</h1>
         <p class="lead">Fast, reliable, and secure wireless internet for your home and office.</p>
-        <button class="btn btn-lime btn-lg mt-4 px-5">Get Started Now</button>
+        <a href="{% url 'package_list' %}"><button class="btn btn-lime btn-lg mt-4 px-5">Get Started Now</button></a>
     </div>
 </section>
 
-<section class="py-5 bg-white">
-    <div class="container text-center">
+<section class="py-5 bg-white shadow-lg" style="min-height: 100vh; position: sticky; top: 0; z-index: 2;">
+    <div class="container text-center py-5">
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="p-4 rounded shadow-sm" style="background-color: var(--primary-purple); color: white;">
@@ -31,15 +31,41 @@
                 </div>
             </div>
         </div>
+        <div class="mt-5 pt-5">
+            <h3 class="text-purple fw-bold mb-5 text-center">Getting Connected is Easy</h3>
+            <div class="row justify-content-center g-5 m-0">
+                <div class="col-md-4 text-center">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="mb-4 d-flex align-items-center justify-content-center rounded-circle shadow-sm" style="width: 60px; height: 60px; background-color: var(--primary-purple); color: white; font-weight: bold; font-size: 1.2rem;">1</div>
+                        <h5 class="fw-bold">Request Site Survey</h5>
+                        <p class="text-muted px-lg-4">Contact us to check signal strength at your location.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="mb-4 d-flex align-items-center justify-content-center rounded-circle shadow-sm" style="width: 60px; height: 60px; background-color: var(--primary-purple); color: white; font-weight: bold; font-size: 1.2rem;">2</div>
+                        <h5 class="fw-bold">Fast Installation</h5>
+                        <p class="text-muted px-lg-4">Our technicians set up your wireless equipment within 24 hours.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="mb-4 d-flex align-items-center justify-content-center rounded-circle shadow-sm" style="width: 60px; height: 60px; background-color: var(--primary-purple); color: white; font-weight: bold; font-size: 1.2rem;">3</div>
+                        <h5 class="fw-bold">Enjoy High Speed</h5>
+                        <p class="text-muted px-lg-4">Start browsing, streaming, and working without interruptions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="py-5 bg-white">
-    <div class="container">
-        <div class="row align-items-center">
+<section class="py-5 bg-white shadow-lg" style="min-height: 100vh; position: sticky; top: 0; z-index: 3;">
+    <div class="container py-5">
+        <div class="row align-items-center mb-5">
             <div class="col-lg-6">
                 <h2 class="text-purple fw-bold mb-4">Empowering Kinoo with Seamless Connectivity</h2>
-                <p class="lead text-muted">We started Boma Net with a simple mission: to bridge the digital divide. By providing high-speed, Internet solutions, we ensure that every home and business in our community stays connected to what matters most.</p>
+                <p class="lead text-muted">We started TorNet with a simple mission: to bridge the digital divide. By providing high-speed, Internet solutions, we ensure that every home and business in our community stays connected to what matters most.</p>
                 <ul class="list-unstyled">
                     <li><i class="bi bi-check-circle-fill text-purple me-2"></i> 99.9% Uptime Guarantee</li>
                     <li><i class="bi bi-check-circle-fill text-purple me-2"></i> 24/7 Local Support</li>
@@ -49,10 +75,37 @@
                 <i class="bi bi-rocket-takeoff text-purple" style="font-size: 10rem;"></i>
             </div>
         </div>
+        
+        <div class="row g-4 mt-5 text-center">
+            <div class="col-md-3">
+                <div class="p-3 border-start border-purple border-4">
+                    <h2 class="fw-bold text-purple">500+</h2>
+                    <p class="text-muted mb-0">Homes Connected</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 border-start border-purple border-4">
+                    <h2 class="fw-bold text-purple">50+</h2>
+                    <p class="text-muted mb-0">Businesses Online</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 border-start border-purple border-4">
+                    <h2 class="fw-bold text-purple">99.9%</h2>
+                    <p class="text-muted mb-0">Network Uptime</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 border-start border-purple border-4">
+                    <h2 class="fw-bold text-purple">24/7</h2>
+                    <p class="text-muted mb-0">Rapid Support</p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="d-flex align-items-center text-white position-relative" style="min-height: 60vh; background: linear-gradient(rgba(46, 2, 109, 0.8), rgba(69, 10, 122, 0.8)), url('/static/images/kinoo-satellite.png') no-repeat center center/cover;">
+<section class="d-flex align-items-center text-white shadow-lg" style="min-height: 100vh; background: linear-gradient(rgba(46, 2, 109, 0.8), rgba(69, 10, 122, 0.8)), url('/static/images/kinoo-satellite.png') no-repeat center center/cover; position: sticky; top: 0; z-index: 4;">
     <div class="container text-center py-5">
         <h2 class="fw-bold mb-4">Areas We Cover</h2>
         <div class="d-flex flex-wrap justify-content-center gap-3">
@@ -64,8 +117,8 @@
     </div>
 </section>
 
-<section class="py-5 bg-white">
-    <div class="container">
+<section class="py-5 bg-white shadow-lg" style="min-height: 100vh; position: sticky; top: 0; z-index: 5;">
+    <div class="container py-5">
         <div class="text-center mb-5">
             <h2 class="text-purple fw-bold">Check Your Current Speed</h2>
             <p class="text-muted">Experience the Tornet difference. Test your connection below.</p>
@@ -76,29 +129,21 @@
     </div>
 </section>
 
-<section class="py-5 bg-light">
-    <div class="container">
+<section class="py-5 bg-light shadow-lg" style="min-height: 80vh; position: sticky; top: 0; z-index: 6;">
+    <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-md-6 mb-4 mb-md-0">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.3644837504!2d36.65750275541992!3d-1.2681534999999982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f199320626a45%3A0xc3f837265f242502!2sKinoo!5e0!3m2!1sen!2ske!4v1713295000000!5m2!1sen!2ske" width="100%" height="450" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.3644837504!2d36.65750275541992!3d-1.2681534999999982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f199320626a45%3A0xc3f837265f242502!2sKinoo!5e0!3m2!1sen!2ske!4v1713295000000!5m2!1sen!2ske" width="100%" height="450" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div class="col-md-6">
                 <div class="card border-0 shadow-lg p-4">
                     <h3 class="text-purple fw-bold text-center mb-4">Get Every Single Update Daily</h3>
                     <form method="POST">
                         {% csrf_token %}
-                        <div class="mb-3">
-                            <input type="text" name="name" class="form-control" placeholder="Full Name" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" name="email" class="form-control" placeholder="Email Address" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
-                        </div>
-                        <div class="mb-3">
-                            <textarea name="message" class="form-control" rows="3" placeholder="Your Message"></textarea>
-                        </div>
+                        <div class="mb-3"><input type="text" name="name" class="form-control" placeholder="Full Name" required></div>
+                        <div class="mb-3"><input type="email" name="email" class="form-control" placeholder="Email Address" required></div>
+                        <div class="mb-3"><input type="text" name="phone" class="form-control" placeholder="Phone Number" required></div>
+                        <div class="mb-3"><textarea name="message" class="form-control" rows="3" placeholder="Your Message"></textarea></div>
                         <button type="submit" class="btn btn-dark w-100 py-2">Submit Subscription</button>
                     </form>
                 </div>

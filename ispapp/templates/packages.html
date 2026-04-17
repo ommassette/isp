@@ -30,6 +30,7 @@
                                 <h3 class="fw-bold text-purple">{{ package.speed }} {{ package.unit }}</h3>
                                 <p class="text-uppercase fw-bold text-muted small">{{ package.name }}</p>
                                 <hr class="mx-auto w-25">
+                                <div class="mb-3 text-muted small">{{ package.content|safe }}</div>
                                 <h2 class="display-6 fw-bold text-purple">KES {{ package.price }}</h2>
                                 <p class="text-muted">Per Month</p>
                                 <button class="btn btn-dark rounded-pill px-4 mt-3">Select Plan</button>
@@ -52,6 +53,7 @@
                                 <h3 class="fw-bold text-white">{{ package.speed }} {{ package.unit }}</h3>
                                 <p class="text-uppercase fw-bold text-white-50 small">{{ package.name }}</p>
                                 <hr class="mx-auto w-25 border-white">
+                                <div class="mb-3 text-white-50 small">{{ package.content|safe }}</div>
                                 <h2 class="display-6 fw-bold text-white">KES {{ package.price }}</h2>
                                 <p class="text-white-50">Per Month</p>
                                 <button class="btn btn-lime rounded-pill px-4 mt-3">Select Plan</button>

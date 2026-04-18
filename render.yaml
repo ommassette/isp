@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: tornet-wireless
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn isp.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4

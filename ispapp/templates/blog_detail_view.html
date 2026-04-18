@@ -1,37 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<article class="container py-5">
+<style>
+    .text-blue { color: #007bff !important; }
+    .btn-blue { background-color: #007bff; color: white; border-radius: 50px; }
+    .btn-blue:hover { background-color: #0056b3; color: white; }
+    .blog-content { line-height: 1.8; color: #444; }
+    .breadcrumb-item a { color: #007bff; text-decoration: none; }
+    .custom-blockquote {
+        border-left: 5px solid #007bff;
+        background-color: #f8f9fa;
+        padding: 20px 30px;
+        border-radius: 0 15px 15px 0;
+        font-style: italic;
+    }
+    body.dark .blog-content, body.dark .display-4, body.dark .lead { color: #ffffff !important; }
+    body.dark .custom-blockquote { background-color: #2a2f36; color: #eee; }
+    body.dark .breadcrumb-item.active { color: #aaa; }
+</style>
+
+<article class="container" style="padding-top: 120px; padding-bottom: 80px;">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
             <nav aria-label="breadcrumb" class="mb-4">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'blogs' %}" class="text-purple text-decoration-none">Blog</a></li>
-                    <li class="breadcrumb-item active">{{ post.main_title }}</li>
+                    <li class="breadcrumb-item"><a href="{% url 'blogs' %}">Blog</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ post.main_title }}</li>
                 </ol>
             </nav>
 
-            <h1 class="display-4 fw-bold text-purple mb-3">{{ post.main_title }}</h1>
-            <p class="text-muted mb-4">By <span class="fw-bold">{{ post.author }}</span> on {{ post.date|date:"F d, Y" }}</p>
+            <h1 class="display-4 fw-bold text-blue mb-3">{{ post.main_title }}</h1>
+            <div class="d-flex align-items-center mb-5">
+                <div class="text-muted">
+                    <span class="text-dark-emphasis">By <strong class="text-dark-emphasis">{{ post.author }}</strong></span>
+                    <span class="mx-2">•</span>
+                    <span>{{ post.date|date:"F d, Y" }}</span>
+                </div>
+            </div>
 
             {% if post.blog_image %}
-                <img src="{{ post.blog_image.url }}" class="img-fluid rounded-4 shadow-sm mb-5 w-100" alt="{{ post.main_title }}">
+                <div class="mb-5">
+                    <img src="{{ post.blog_image.url }}" class="img-fluid rounded-4 shadow-sm w-100" alt="{{ post.main_title }}" style="max-height: 500px; object-fit: cover;">
+                </div>
             {% endif %}
 
-            <p class="lead fw-bold text-dark mb-4">{{ post.lead_text }}</p>
+            <div class="blog-content fs-5">
+                <p class="lead fw-bold mb-4">{{ post.lead_text }}</p>
 
-            <h3 class="mt-5 fw-bold text-purple">{{ post.sub_heading }}</h3>
+                <h3 class="mt-5 fw-bold text-blue mb-4">{{ post.sub_heading }}</h3>
 
-            <blockquote class="blockquote border-start border-4 border-lime ps-4 my-5 py-2 bg-light fst-italic shadow-sm">
-                "{{ post.block_quote }}"
-            </blockquote>
+                <blockquote class="custom-blockquote my-5 shadow-sm">
+                    "{{ post.block_quote }}"
+                </blockquote>
 
-            <div class="blog-body fs-5 text-secondary leading-relaxed">
-                {{ post.full_blog|linebreaks }}
+                <div class="blog-body">
+                    {{ post.full_blog|linebreaks }}
+                </div>
             </div>
 
             <div class="mt-5 pt-4 border-top">
-                <a href="{% url 'blogs' %}" class="btn btn-purple rounded-pill px-4">← Back to Blog List</a>
+                <a href="{% url 'blogs' %}" class="btn btn-blue px-4 py-2">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Blog List
+                </a>
             </div>
         </div>
     </div>

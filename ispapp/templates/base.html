@@ -1,43 +1,67 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tornet - Wireless Internet</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        :root { --primary-purple: #2e026d; --accent-lime: #f3ffcc; --deep-violet: #450a7a; }
-        body { font-family: 'Inter', sans-serif; }
-        .bg-gradient-purple { background: linear-gradient(135deg, var(--primary-purple), var(--deep-violet)); }
-        .text-purple { color: var(--primary-purple); }
-        .btn-lime { background-color: var(--accent-lime); color: var(--primary-purple); border-radius: 50px; font-weight: bold; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TorNet | Wireless Internet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Poppins:wght@100..900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-purple sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="{% url 'my_index' %}">TORNET</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'my_index' %}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'package_list' %}">Packages</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'blogs' %}">Blog</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body>
+  <div class="circle"></div>
+  <div class="circle1"></div>
+  <div class="circle2"></div>
+  <div class="circle3"></div>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">TorNet</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active text-white" href="{% url 'my_index' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="{% url 'package_list' %}">Packages</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="{% url 'blogs' %}">Blog</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#" id="darkModeToggle">Theme</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <footer class="bg-gradient-purple text-white py-5 mt-5">
-        <div class="container text-center">
-            <p>&copy; 2026 TorNet Africa Limited. All rights reserved.</p>
-        </div>
-    </footer>
+  <main>
+    {% block content %}{% endblock %}
+</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <footer>
+    <div class="footer-container" style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; padding: 50px 5%;">
+      <div class="map-container" style="flex: 1; min-width: 300px;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.852278855423!2d36.6806!3d-1.2598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTUnMzUuMyJTIDM2wrA0MCc1MC4yIkU!5e0!3m2!1sen!2ske!4v1712270000000!5m2!1sen!2ske" width="100%" height="400" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <div class="feedback" style="flex: 1; min-width: 300px;">
+        <form id="contactForm" method="POST" action="{% url 'my_index' %}">
+          {% csrf_token %}
+          <h4>Get in contact with us</h4>
+          <div class="mb-3"><span>Full Name</span><input type="text" name="name" class="form-control" placeholder="Full Name" required /></div>
+          <div class="mb-3"><span>Email Address</span><input type="email" name="email" class="form-control" placeholder="Email Address" required /></div>
+          <div class="mb-3"><span>Phone Number</span><input type="tel" name="phone" class="form-control" placeholder="Phone Number" required /></div>
+          <div class="mb-3"><span>Your Message</span><textarea name="message" class="form-control" rows="3" placeholder="Your Message"></textarea></div>
+          <button type="submit" class="btn-dark">Submit Subscription</button>
+        </form>
+      </div>
+    </div>
+    <h5>2026 TorNet Africa Limited. All rights reserved.</h5>
+  </footer>
+    
+
+  <div id="toast" class="toast-notification"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

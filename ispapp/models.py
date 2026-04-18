@@ -7,7 +7,7 @@ class Packages(models.Model):
         ('business', 'Business'),
     ]
     name = models.CharField(max_length=100)
-    speed = models.DecimalField(max_digits=10, decimal_places=2)
+    speed = models.IntegerField()
     unit = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='home')
@@ -33,7 +33,7 @@ class Blog(models.Model):
     author = models.CharField(max_length=40)
     blog_image = models.ImageField(upload_to='blogs/')
     lead_text = models.TextField(null=True)
-    sub_heading = models.CharField(max_length=30)
+    sub_heading = models.CharField(max_length=100)
     block_quote = models.TextField(null=True)
     full_blog = models.TextField(null=True)
 
@@ -44,7 +44,7 @@ class Lead(models.Model):
     full_name = models.CharField(max_length=200)
     email = models.EmailField()
     phone_number = models.CharField(max_length=20)
-    interested_package = models.ForeignKey(Packages, on_delete=models.SET_NULL, null=True)
+    interested_package = models.ForeignKey(Packages, on_delete=models.SET_NULL, null=True, blank=True)
     message = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

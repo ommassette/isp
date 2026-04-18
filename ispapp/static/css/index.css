@@ -332,21 +332,60 @@ body.dark .connect {
   margin-bottom: 50px;
   font-size: 2.5rem;
 }
-
-.about p {
-  font-size: 1.5rem;
-  margin-right: 20px;
-  color: white;
-}
-
+/* Container adjustments */
 .about article {
-  margin-inline: 90px;
+  margin-inline: 5%; /* Changed from fixed 90px to responsive % */
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 30px;
 }
+
+.about-content {
+  flex: 1;
+  min-width: 100%; /* Default to full width for mobile */
+}
+
+/* Enable side-by-side view for larger screens */
+@media (min-width: 992px) {
+  .about-content {
+    min-width: 300px;
+  }
+  .about article {
+    margin-inline: 90px;
+  }
+}
+
+.about p {
+  font-size: 1.25rem; /* Slightly smaller for mobile readability */
+  color: white;
+  margin-bottom: 25px;
+}
+
+/* Stats Layout */
+.stats-grid {
+  display: flex;
+  justify-content: space-around; /* Spreads items evenly on mobile */
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.stat-item {
+  flex: 1;
+  min-width: 100px; /* Prevents stats from squishing too much */
+}
+
+.stat-number {
+  font-size: 1.8rem; /* Scaled down for mobile */
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* Earth Image Responsiveness */
 .earth {
   border-radius: 20px;
   background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format");
@@ -354,9 +393,18 @@ body.dark .connect {
   background-size: cover;
   width: 100%;
   max-width: 500px;
-  height: 300px;
+  height: 250px; /* Shorter on mobile */
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
+
+@media (min-width: 768px) {
+  .stat-number { font-size: 2.5rem; }
+  .earth { height: 350px; }
+  .stats-grid { justify-content: flex-start; }
+}
+
+/* Theme color logic */
+body.dark .stat-number { color: #007bff; }
 .area-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

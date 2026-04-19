@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section class="d-flex align-items-center text-white" style="min-height: 80vh; background: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.8)), url('/static/images/packages.jpg') no-repeat center center/cover; padding-top: 80px;">
+<section class="d-flex align-items-center text-white" style="min-height: 80vh; background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/images/packages.jpg') no-repeat center center/cover; padding-top: 80px;">
     <div class="container text-center py-5">
         <h1 class="display-3 fw-bold">Our Internet Packages</h1>
         <p class="lead">Affordable and lightning-fast plans tailored for you.</p>
@@ -36,7 +36,7 @@
                     <div class="col-md-4">
                         <div class="card h-100 package-card shadow-sm text-center">
                             <div class="card-body py-5">
-                                <i class="bi bi-house-door display-5 text-primary mb-3"></i>
+                                <i class="bi bi-house-door display-5 text-primary mb-3 spinner-grow"></i>
                                 <h3 class="fw-bold text-primary">{{ package.speed }} {{ package.unit }}</h3>
                                 <p class="text-uppercase fw-bold text-muted small">{{ package.name }}</p>
                                 <hr class="mx-auto w-25">
@@ -60,7 +60,7 @@
                     <div class="col-md-4">
                         <div class="card h-100 package-card shadow-sm text-center">
                             <div class="card-body py-5">
-                                <i class="bi bi-briefcase display-5 text-primary mb-3"></i>
+                                <i class="bi bi-briefcase display-5 text-primary mb-3 spinner-grow"></i>
                                 <h3 class="fw-bold text-primary">{{ package.speed }} {{ package.unit }}</h3>
                                 <p class="text-uppercase fw-bold text-muted small">{{ package.name }}</p>
                                 <hr class="mx-auto w-25">

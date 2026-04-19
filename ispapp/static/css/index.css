@@ -89,8 +89,8 @@ body.dark footer {
   background-color: #0056b3;
 }
 
-body.dark .mb-3 span {
-  background-color: #0056b3;
+.nav-link{
+  color: #007bff;
 }
 
 body.dark .form-control {
@@ -105,18 +105,40 @@ body.dark .form-control::placeholder {
 
 header {
   /* background-image: url("https://images.unsplash.com/photo-1573164713988-8665fc963095?w=1600&auto=format"); */
-  background-image: url("../images/hero-bg.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/hero-bg.jpg");
   background-position: center;
   background-size: cover;
   height: 100vh;
   position: relative;
+}
+.navbar-brand{
+  color: var(--bg-color-dark);
+}
+body.dark .navbar-brand{
+  color: white;
 }
 .navbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-family: "Poppins", sans-serif;
-  background: rgba(0, 123, 255, 0.09);
+  background: rgb(255, 255, 255);
+  backdrop-filter: blur(20px);
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px;
+  border-bottom: 1px solid rgba(224, 224, 224, 0.3);
+  width: 100%;
+}
+body.dark .navbar{
+    display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  background: #212529;
   backdrop-filter: blur(20px);
   position: fixed;
   z-index: 30;
@@ -147,7 +169,7 @@ ul {
 nav li {
   padding-inline: 20px;
   transition: 0.3s ease;
-  color: white;
+  color: #0056b3;
 }
 button {
   cursor: pointer;
@@ -264,6 +286,16 @@ button {
   border-left: 8px solid var(--text-color-light);
   margin-bottom: 50px;
   font-size: 2.5rem;
+  color: white;
+}
+.title3{
+    margin-left: 90px;
+  padding-left: 60px;
+  color: var(--text-color-light);
+  border-left: 8px solid var(--text-color-light);
+  margin-bottom: 50px;
+  font-size: 2.5rem;
+  color: #0056b3;
 }
 
 .cards {
@@ -551,7 +583,8 @@ body.dark .btn-dark:hover {
 /* Responsive fixes */
 @media (max-width: 1024px) {
   .title,
-  .title2 {
+  .title2
+  .title3 {
     margin-left: 30px;
     margin-right: 30px;
   }
@@ -582,7 +615,8 @@ body.dark .btn-dark:hover {
     font-size: 1rem;
   }
   .title,
-  .title2 {
+  .title2
+  .title3 {
     font-size: 1.8rem;
     padding-left: 30px;
     padding-right: 30px;

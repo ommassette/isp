@@ -20,23 +20,23 @@
 
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">TorNet</a>
+    <a class="navbar-brand" href="#">TorNet</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="{% url 'my_index' %}">Home</a>
+          <a class="nav-link" aria-current="page" href="{% url 'my_index' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{% url 'package_list' %}">Packages</a>
+          <a class="nav-link" href="{% url 'package_list' %}">Packages</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{% url 'blogs' %}">Blog</a>
+          <a class="nav-link" href="{% url 'blogs' %}">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#" id="darkModeToggle">Theme</a>
+          <a class="nav-link" href="#" id="darkModeToggle">Theme</a>
         </li>
       </ul>
     </div>
@@ -48,14 +48,14 @@
       <div>
         <h1>Connect with The World Without Wires</h1>
         <p class="lead">Fast, reliable, and secure wireless internet for your home and office.</p>
-        <button class="start" id="getStartedBtn">Get Started Now</button>
+        <a href="{% url 'package_list' %}"><button class="start" id="getStartedBtn">Get Started Now</button></a>
       </div>
     </div>
   </header>
 
   <main>
     <div class="cards-section" id="packages">
-      <h1 class="title">Why Us?</h1>
+      <h1 class="title3">Why Us?</h1>
       <div class="cards">
         <div class="speed">
           <i class="bi bi-speedometer2" style="font-size: 240px; color: #007bff;"></i>
@@ -101,7 +101,7 @@
 </div>
 
     <div class="areas" id="blog">
-      <h1 class="title area-title">Areas We Cover</h1>
+      <h1 class="title3 area-title">Areas We Cover</h1>
       <div class="area-cards">
         <div class="kinoo area1">
           <h3>Kinoo</h3>
@@ -120,35 +120,85 @@
   </main>
 
 <footer>
-  <div class="footer-container" style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; padding: 0 5%;">
-    <div class="map-container" style="flex: 1; min-width: 300px;">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.36448972504!2d36.6631!3d-1.2644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1bc2374e2a87%3A0xc6657153b3469e71!2sKinoo!5e0!3m2!1sen!2ske!4v1712312345678!5m2!1sen!2ske" width="100%" height="450" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+  <div class="footer-container" 
+       style="display: flex; gap: 2rem; flex-wrap: wrap; padding: 50px 5%; align-items: center;">
+
+    <!-- LEFT SIDE -->
+    <div style="flex: 2; min-width: 350px; display: flex; flex-direction: column; gap: 2rem; justify-content: center;">
+
+      <!-- MAP -->
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.852278855423!2d36.6806!3d-1.2598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTUnMzUuMyJTIDM2wrA0MCc1MC4yIkU!5e0!3m2!1sen!2ske!4v1712270000000!5m2!1sen!2ske"
+          width="100%" height="420"
+          style="border:0; border-radius: 15px;">
+        </iframe>
+      </div>
+
+      <!-- CONTACT INFO GRID -->
+      <div>
+        <h4 style="margin-bottom: 1rem;">Contact Information</h4>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+
+          <!-- Column 1 -->
+          <div style="flex: 1; min-width: 200px;">
+            <p><i class="bi bi-geo-alt-fill"></i> Nairobi, Kenya</p>
+            <p><i class="bi bi-telephone-fill"></i> +254 700 000 000</p>
+          </div>
+
+          <!-- Column 2 -->
+          <div style="flex: 1; min-width: 200px;">
+            <p><i class="bi bi-envelope-fill"></i> info@tornetafrica.com</p>
+            <p><i class="bi bi-clock-fill"></i> Mon - Fri, 8:00 AM - 5:00 PM</p>
+          </div>
+
+          <!-- Column 3 (extra content to fill space) -->
+          <div style="flex: 1; min-width: 200px;">
+            <p><i class="bi bi-globe"></i> www.tornetafrica.com</p>
+            <p><i class="bi bi-headset"></i> 24/7 Customer Support</p>
+          </div>
+
+        </div>
+      </div>
+
     </div>
+
+    <!-- RIGHT SIDE (FORM) -->
     <div class="feedback" style="flex: 1; min-width: 300px;">
       <form id="contactForm" method="POST" action="{% url 'my_index' %}">
         {% csrf_token %}
         <h4>Get in contact with us</h4>
+
         <div class="mb-3">
           <span>Full Name</span>
-          <input type="text" name="name" class="form-control" placeholder="Full Name" required id="fullName" />
+          <input type="text" name="name" class="form-control" placeholder="Full Name" required />
         </div>
+
         <div class="mb-3">
           <span>Email Address</span>
-          <input type="email" name="email" class="form-control" placeholder="Email Address" required id="email" />
+          <input type="email" name="email" class="form-control" placeholder="Email Address" required />
         </div>
+
         <div class="mb-3">
           <span>Phone Number</span>
-          <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required id="phone" />
+          <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required />
         </div>
+
         <div class="mb-3">
           <span>Your Message</span>
-          <textarea name="message" class="form-control" rows="3" placeholder="Your Message" id="message"></textarea>
+          <textarea name="message" class="form-control" rows="3" placeholder="Your Message"></textarea>
         </div>
+
         <button type="submit" class="btn-dark">Submit Subscription</button>
       </form>
     </div>
+
   </div>
-  <h5>2026 TorNet Africa Limited. All rights reserved.</h5>
+
+  <h5 style="text-align:center; margin-top:20px;">
+    2026 TorNet Africa Limited. All rights reserved.
+  </h5>
 </footer>
 
   <div id="toast" class="toast-notification"></div>

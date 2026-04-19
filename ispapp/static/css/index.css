@@ -660,3 +660,41 @@ body.dark .btn-dark:hover {
   .navbar { padding: 10px; justify-content: center; }
   .navbar ul { display: none; } /* Consider adding a hamburger menu toggle */
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px 20px;
+    left: 0;
+    transform: none;
+  }
+
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    order: 3;
+    text-align: center;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  /* Opens the menu when clicking the navbar area */
+  .navbar:active ul, 
+  .navbar:focus-within ul {
+    display: flex;
+  }
+
+  .navbar-brand {
+    order: 1;
+  }
+
+  /* This ensures your toggle/button stays on the right */
+  .navbar button, 
+  .navbar .navbar-toggler {
+    order: 2;
+    display: block;
+  }
+}

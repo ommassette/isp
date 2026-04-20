@@ -92,6 +92,10 @@ body.dark footer {
 .nav-link{
   color: #007bff;
 }
+.nav-link2{
+  color: yellow;
+  padding-top: 0;
+}
 
 body.dark .form-control {
   background: rgba(255, 255, 255, 0.1);
@@ -697,4 +701,17 @@ body.dark .btn-dark:hover {
     order: 2;
     display: block;
   }
+}
+/* Light mode styling */
+.form-text, .help-block {
+    color: var(--text-color-light);
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Dark mode styling */
+body.dark .form-text, 
+body.dark .help-block {
+    color: var(--text-color-dark) !important;
+    opacity: 0.7;
 }

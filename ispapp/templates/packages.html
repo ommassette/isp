@@ -16,6 +16,30 @@
     body.dark .package-card { background: #2a2f36; color: white; }
     /* Added to ensure dark mode text visibility */
     body.dark .package-card h2, body.dark .package-card h3, body.dark .package-card p, body.dark .package-card li { color: #fff !important; }
+
+    .package-card {
+    background: linear-gradient(45deg, #ee7752, #fff, #7ba7d6, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: none;
+}
+    body.dark .package-card {
+    background: linear-gradient(45deg, #ee7752, #2a2f36, #012347, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 </style>
 
 <section class="py-5">

@@ -7,25 +7,36 @@
   <title>TorNet | Wireless Internet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Poppins:wght@100..900&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <style>
+    @media (max-width: 991.98px) {
+  .navbar-collapse {
+    background-color: #007bff;
+    padding: 1.5rem;
+    border-radius: 0 0 10px 10px;
+  }
+  .nav-link, .navbar-text {
+    color: white !important;
+  }
+}
+  </style>
 </head>
 <body>
   <div class="circle"></div>
   <div class="circle1"></div>
   <div class="circle2"></div>
   <div class="circle3"></div>
-
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg bg-transparent" style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">TorNet</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand text-black" href="#" style="color: #007bff !important;">SureNet</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="{% url 'my_index' %}">Home</a>
         </li>
@@ -42,178 +53,160 @@
           <a class="nav-link" href="#" id="darkModeToggle">Theme</a>
         </li>
       </ul>
+      <span class="navbar-text"style="color: #007bff !important;">
+        Reliable connection you can trust.
+      </span>
     </div>
   </div>
 </nav>
 
-  <header>
-    <div class="main">
-      <div>
-        <h1>Connect with The World Without Wires</h1>
-        <p class="lead">Fast, reliable, and secure wireless internet for your home and office.</p>
-        <a href="{% url 'package_list' %}"><button class="start" id="getStartedBtn">Get Started Now</button></a>
+<header class="hero-section" style="margin-top: 100px;">
+  <div class="container-fluid" style="max-width: 1400px;"> <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        {% for slide in hero_slides %}
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+        {% endfor %}
       </div>
+      <div class="carousel-inner" style="border-radius: 30px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
+        {% for slide in hero_slides %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img src="{{ slide.image.url }}" class="d-block w-100" alt="{{ slide.title }}" style="height: 650px; object-fit: cover;">
+          <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.6); border-radius: 15px; padding: 30px; bottom: 15%;">
+            <h5 style="font-weight: 700; font-size: 2.5rem;">{{ slide.title }}</h5>
+            <p style="font-size: 1.2rem;">{{ slide.sub_title }}</p>
+            <a href="{% url 'package_list' %}" class="btn start" style="background: #007bff; color: white; border: none; padding: 12px 35px; font-size: 1.1rem;">{{ slide.button_text }}</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-  </header>
+  </div>
+</header>
 
   <main>
-    <div class="cards-section" id="packages">
-      <h1 class="title3">Why Us?</h1>
-      <div class="cards">
-        <div class="speed">
-          <i class="bi bi-speedometer2" style="font-size: 240px; color: #007bff;"></i>
-          <h3>Ultimately Fast</h3>
-          <p>Lightning speed with low latency</p>
+<div class="cards-section" id="packages">
+    <h1 class="title3">Why Us?</h1>
+    <div class="cards">
+        {% for benefit in benefits %}
+        <div class="{% if forloop.counter == 1 %}speed{% elif forloop.counter == 2 %}wires{% else %}connect{% endif %}">
+            <i class="bi {{ benefit.icon_class }}" style="font-size: 240px; color: #007bff;"></i>
+            <h3>{{ benefit.title }}</h3>
+            <p>{{ benefit.description }}</p>
         </div>
-        <div class="wires">
-          <i class="bi bi-wifi" style="font-size: 240px; color: #007bff;"></i>
-          <h3>Zero Wires</h3>
-          <p>Completely wireless connection</p>
-        </div>
-        <div class="connect">
-          <i class="bi bi-link-45deg" style="font-size: 240px; color: #007bff;"></i>
-          <h3>Simply Connected</h3>
-          <p>Seamless connectivity everywhere</p>
-        </div>
-      </div>
+        {% endfor %}
     </div>
+</div>
 
-  <div class="about">
+<div class="about">
+  {% if about %}
   <h1 class="title">About Us</h1>
   <article>
     <div class="about-content">
-      <p>We started TorNet with a simple mission:<br />to bridge the digital divide. By providing high-speed Internet solutions, we ensure that every home and business in our community stays connected to what matters most.</p>
+      <p>{{ about.main_text|linebreaksbr }}</p>
       
       <div class="stats-grid">
         <div class="stat-item">
-          <h2 class="stat-number">500+</h2>
+          <h2 class="sn-stat-number">{{ about.homes_connected }}</h2>
           <p class="stat-label">Homes Connected</p>
         </div>
         <div class="stat-item">
-          <h2 class="stat-number">99.9%</h2>
+          <h2 class="sn-stat-number">{{ about.uptime_percentage }}</h2>
           <p class="stat-label">Uptime</p>
         </div>
         <div class="stat-item">
-          <h2 class="stat-number">24/7</h2>
+          <h2 class="sn-stat-number">{{ about.support_hours }}</h2>
           <p class="stat-label">Support</p>
         </div>
       </div>
     </div>
-    <div class="earth"></div>
+    <div class="earth" style="background-image: url('{{ about.side_image.url }}');"></div>
   </article>
+  {% endif %}
 </div>
 
- <div class="areas" id="blog">
-      <h1 class="title3 area-title">Areas We Cover</h1>
-      <div class="area-cards">
-        <div class="kinoo area1">
-          <h3>Kinoo</h3>
+<div class="areas">
+    <h1 class="title3 area-title">Areas We Cover</h1>
+    <div class="area-cards">
+        {% for area in areas %}
+        <div class="kinoo area{{ forloop.counter }}" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ area.background_image.url }}');">
+            <h3>{{ area.name }}</h3>
         </div>
-        <div class="kinoo area2">
-          <h3>87 Area</h3>
-        </div>
-        <div class="kinoo area3">
-          <h3>Muthiga</h3>
-        </div>
-        <div class="kinoo area4">
-          <h3>Regency</h3>
-        </div>
-      </div>
+        {% endfor %}
     </div>
+</div>
 
-    <div class="speed-test-container" style="padding: 20px;">
+    <div class="speed-test-container container">
         <h1 class="title3">Test Your Connection</h1>
-        <div style="width: 100%; height: 450px;">
-            <iframe src="https://openspeedtest.com/Get-widget.php" width="100%" height="100%" frameborder="0"></iframe>
-        </div>
+        <iframe src="https://openspeedtest.com/Get-widget.php" width="100%" height="450" frameborder="0"></iframe>
     </div>
   </main>
 
 <footer id="contact">
-  <div class="footer-container" 
-       style="display: flex; gap: 2rem; flex-wrap: wrap; padding: 50px 5%; align-items: center;">
+    <div class="footer-container">
+      <div class="footer-left">
+        {% if contact %}
+        <div class="map-container">
+          <iframe src="{{ contact.map_url }}" width="100%" height="420" style="border:0; border-radius: 15px;"></iframe>
+        </div>
 
-    <!-- LEFT SIDE -->
-    <div style="flex: 2; min-width: 350px; display: flex; flex-direction: column; gap: 2rem; justify-content: center;">
-
-      <!-- MAP -->
-      <div class="map-container">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.852278855423!2d36.6806!3d-1.2598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTUnMzUuMyJTIDM2wrA0MCc1MC4yIkU!5e0!3m2!1sen!2ske!4v1712270000000!5m2!1sen!2ske"
-          width="100%" height="420"
-          style="border:0; border-radius: 15px;">
-        </iframe>
+        <div class="contact-grid">
+          <div>
+            <h4 style="margin-bottom: 1rem;">Contact Information</h4>
+            <div class="contact-cols">
+              <div class="col-item">
+                <p><i class="bi bi-geo-alt-fill"></i> {{ contact.address }}</p>
+                <p><a href="tel:{{ contact.phone }}" class="nav-link2"><i class="bi bi-telephone-fill"></i> {{ contact.phone }}</a></p>
+              </div>
+              <div class="col-item">
+                <p><a href="mailto:{{ contact.email }}" class="nav-link2"><i class="bi bi-envelope-fill"></i> {{ contact.email }}</a></p>
+                <p><i class="bi bi-clock-fill"></i> {{ contact.office_hours }}</p>
+              </div>
+              <div class="col-item">
+                <p><i class="bi bi-headset"></i> 24/7 Customer Support</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
       </div>
 
-      <!-- CONTACT INFO GRID -->
-<div>
-        <h4 style="margin-bottom: 1rem;">Contact Information</h4>
-
-        <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
-
-          <!-- Column 1 -->
-          <div style="flex: 1; min-width: 200px;">
-            <p><i class="bi bi-geo-alt-fill"></i> Nairobi, Kenya</p>
-            <p><a href="" class="nav-link2"><i class="bi bi-telephone-fill"></i> +254 700 000 000</a></p>
+      <div class="feedback">
+        <form id="contactForm" method="POST">
+          {% csrf_token %}
+          <h4>Get in contact with us</h4>
+          <div class="mb-3">
+            <span>Full Name</span>
+            <input type="text" name="name" class="form-control" placeholder="Full Name" required />
           </div>
-
-          <!-- Column 2 -->
-          <div style="flex: 1; min-width: 200px;">
-            <p><a href="" class="nav-link2"><i class="bi bi-envelope-fill"></i> info@tornetafrica.com</a></p>
-            <p><i class="bi bi-clock-fill"></i> Mon - Fri, 8:00 AM - 5:00 PM</p>
+          <div class="mb-3">
+            <span>Email Address</span>
+            <input type="email" name="email" class="form-control" placeholder="Email Address" required />
           </div>
-
-          <!-- Column 3 (extra content to fill space) -->
-          <div style="flex: 1; min-width: 200px;">
-            <p><a href="" class="nav-link2"><i class="bi bi-globe"></i> www.tornetafrica.com</a></p>
-            <p><i class="bi bi-headset"></i> 24/7 Customer Support</p>
+          <div class="mb-3">
+            <span>Phone Number</span>
+            <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required />
           </div>
-
-        </div>
+          <div class="mb-3">
+            <span>Your Message</span>
+            <textarea name="message" class="form-control" rows="3" placeholder="Your Message"></textarea>
+          </div>
+          <button type="submit" class="btn-dark">Submit Subscription</button>
+        </form>
       </div>
-
     </div>
-
-    <!-- RIGHT SIDE (FORM) -->
-    <div class="feedback" style="flex: 1; min-width: 300px;">
-      <form id="contactForm" method="POST" action="{% url 'my_index' %}">
-        {% csrf_token %}
-        <h4>Get in contact with us</h4>
-
-        <div class="mb-3">
-          <span>Full Name</span>
-          <input type="text" name="name" class="form-control" placeholder="Full Name" required />
-        </div>
-
-        <div class="mb-3">
-          <span>Email Address</span>
-          <input type="email" name="email" class="form-control" placeholder="Email Address" required />
-        </div>
-
-        <div class="mb-3">
-          <span>Phone Number</span>
-          <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required />
-        </div>
-
-        <div class="mb-3">
-          <span>Your Message</span>
-          <textarea name="message" class="form-control" rows="3" placeholder="Your Message"></textarea>
-        </div>
-
-        <button type="submit" class="btn-dark">Submit Subscription</button>
-      </form>
-    </div>
-
-  </div>
-
-  <h5 style="text-align:center; margin-top:20px;">
-    2026 TorNet Africa Limited. All rights reserved.
-  </h5>
-</footer>
-
-  <div id="toast" class="toast-notification"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{% static 'js/script.js' %}"></script>
+    <h5 style="text-align:center; margin-top:20px; padding-bottom: 20px;">
+      2026 SureNet Africa Limited. All rights reserved.
+    </h5>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

@@ -1,7 +1,27 @@
-from django.shortcuts import render, redirect
-from .models import Blog, Bloglist
-from django.shortcuts import render, get_object_or_404
-from .models import Packages, Bloglist, Blog, Lead, AdminDashboardProfile
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import (
+    Packages, Bloglist, Blog, Lead, AdminDashboardProfile,
+    HeroCarousel, WhyUs, AboutUs, ServiceArea, ContactInfo
+)
+
+def index(request):
+    if request.method == "POST":
+        Lead.objects.create(
+            full_name=request.POST.get('name'),
+            email=request.POST.get('email'),
+            phone_number=request.POST.get('phone'),
+            message=request.POST.get('message')
+        )
+        return redirect('my_index')
+    
+    context = {
+        'hero_slides': HeroCarousel.objects.all(),
+        'benefits': WhyUs.objects.all(),
+        'about': AboutUs.objects.first(),
+        'areas': ServiceArea.objects.all(),
+        'contact': ContactInfo.objects.first(),
+    }
+    return render(request, 'index.html', context)
 
 def package_list(request):
     home_packages = Packages.objects.filter(category='home')
@@ -29,20 +49,6 @@ def blog_detail_view(request, pk):
     post = get_object_or_404(Blog, blog_list_ref_id=pk)
     return render(request, 'blog_detail_view.html', {'post': post})
 
-def index(request):
-    if request.method == "POST":
-        Lead.objects.create(
-            full_name=request.POST.get('name'),
-            email=request.POST.get('email'),
-            phone_number=request.POST.get('phone'),
-            message=request.POST.get('message')
-        )
-        return redirect('my_index')
-    return render(request, 'index.html')
-
 def admin_profile(request):
     profile = get_object_or_404(AdminDashboardProfile, user=request.user)
     return render(request, 'admin_profile.html', {'profile': profile})
-
-
-

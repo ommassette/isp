@@ -1,17 +1,13 @@
 from django.contrib import admin
-from django.contrib import admin
-from .models import Packages, Bloglist, Blog, Lead
-
-admin.site.site_header = "Tornet Admin Portal"
-admin.site.site_title = "Tornet Management"
-admin.site.index_title = "Site Content Manager"
-
-# Register your models here.
-from .models import Packages, Bloglist, Blog, Lead, AdminDashboardProfile
+from .models import (
+    Packages, Bloglist, Blog, Lead, AdminDashboardProfile,
+    HeroCarousel, WhyUs, AboutUs, ServiceArea, ContactInfo
+)
 
 @admin.register(Packages)
 class PackagesAdmin(admin.ModelAdmin):
-    list_display = ('name', 'speed', 'unit', 'price')
+    list_display = ('name', 'category', 'speed', 'unit', 'price')
+    list_filter = ('category',)
 
 @admin.register(Bloglist)
 class BloglistAdmin(admin.ModelAdmin):
@@ -26,6 +22,27 @@ class LeadAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'email', 'interested_package', 'created_at')
     readonly_fields = ('created_at',)
 
-@admin.register(AdminDashboardProfile)
-class AdminDashboardProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'is_notified_on_new_lead')
+@admin.register(HeroCarousel)
+class HeroCarouselAdmin(admin.ModelAdmin):
+    list_display = ('title', 'order')
+    list_editable = ('order',)
+
+@admin.register(WhyUs)
+class WhyUsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'icon_class')
+
+@admin.register(AboutUs)
+class AboutUsAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return not AboutUs.objects.exists()
+
+@admin.register(ServiceArea)
+class ServiceAreaAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+@admin.register(ContactInfo)
+class ContactInfoAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return not ContactInfo.objects.exists()
+
+admin.site.register(AdminDashboardProfile)

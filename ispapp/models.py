@@ -58,3 +58,51 @@ class AdminDashboardProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+class HeroCarousel(models.Model):
+    title = models.CharField(max_length=200)
+    sub_title = models.CharField(max_length=300)
+    button_text = models.CharField(max_length=50, default="Get Started Now")
+    image = models.ImageField(upload_to='hero/')
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.title
+
+class WhyUs(models.Model):
+    icon_class = models.CharField(max_length=50, help_text="e.g., bi-speedometer2")
+    title = models.CharField(max_length=100)
+    description = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+
+class AboutUs(models.Model):
+    main_text = models.TextField()
+    side_image = models.ImageField(upload_to='about/')
+    homes_connected = models.CharField(max_length=20, default="500+")
+    uptime_percentage = models.CharField(max_length=20, default="99.9%")
+    support_hours = models.CharField(max_length=20, default="24/7")
+
+    def __str__(self):
+        return "About Us Content"
+
+class ServiceArea(models.Model):
+    name = models.CharField(max_length=100)
+    background_image = models.ImageField(upload_to='areas/', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class ContactInfo(models.Model):
+    address = models.CharField(max_length=255)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+    office_hours = models.CharField(max_length=100)
+    map_url = models.URLField(max_length=500)
+
+    def __str__(self):
+        return "Company Contact Information"

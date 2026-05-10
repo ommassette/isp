@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['isp-qq06.onrender.com', 'localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_hosts',  
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',  # Add to top
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,7 +55,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware', # Add to bottom
 ]
+ROOT_HOSTCONF = 'isp.hosts'
+DEFAULT_HOST = 'www'
+
+ALLOWED_HOSTS = [
+    'isp-qq06.onrender.com', 
+    '.isp-qq06.onrender.com', # The dot allows subdomains
+    'localhost', 
+    '127.0.0.1'
+]
+SESSION_COOKIE_DOMAIN = ".onrender.com"
 
 ROOT_URLCONF = 'isp.urls'
 
